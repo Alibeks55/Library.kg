@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 class Book(models.Model):
     GENRE = (
@@ -29,6 +30,48 @@ class Book(models.Model):
        verbose_name = 'Книга'
        verbose_name_plural = 'Книги'
 
+    def overall_rating(self):
+     
+     current_rating = 10.0
+
+     for grade in self.reviews.all():
+        if grade.mark == '1' and current_rating > 0:
+            current_rating -= 0.5
+        elif grade.mark == '2' and current_rating > 0:
+            current_rating -= 0.2
+        elif grade.mark == '3':
+            pass  
+        elif grade.mark == '4' and current_rating < 10:
+            current_rating += 0.2
+        elif grade.mark == '5' and current_rating < 10:
+            current_rating += 0.5
+
+     current_rating = max(0, min(10, current_rating))
+     return round(current_rating, 1)
+
 #python manage.py makemigrations
 #python manage.py migrate
+
+
+class Reviews(models.Model):
+  MARK =(
+      ('1','1'),
+      ('2','2'),
+      ('3','3'),
+      ('4','4'),
+      ('5','5')
+   )
+  
+  choice_book = models.ForeignKey(Book, on_delete=models.CASCADE, related_name='reviews', verbose_name='Книги:')
+  name_user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Пользователь')
+  mark = models.CharField(max_length=100, choices=MARK, default='5', verbose_name='Оценка:')
+  comments = models.TextField(verbose_name='комментарий:')
+
+  def __str__(self):
+      return f'{self.choice_book}-{self.mark}'
+   
+  class Meta:
+    verbose_name = 'комментарий'
+    verbose_name_plural = 'Комментарии' 
+
        

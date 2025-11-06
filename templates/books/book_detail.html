@@ -1,12 +1,15 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Фильмы</title>
+    <title>Подробнее о книге - {{ book_id.title }}</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
-    <h1>Подробнее об книге - {{ book_id.title }}</h1>
+    {% include 'header.html' %}
+    <h1>Подробнее о книге - {{ book_id.title }}</h1>
     <img src="{{ book_id.image.url }}" alt="" width="450" height="400">
     <p>Описание: {{ book_id.description }}</p>
     <p>Писатель: {{ book_id.director }}</p>
@@ -15,22 +18,23 @@
     <p>Страна: {{ book_id.country }}</p>
     <p>Cкoлькo страниц:  {{ book_id.duration }} стр</p>
     <p>Цена книги: {{ book_id.price }} сом</p>
-    <button><a target="_blank" href="{{ book_id.trailer}}">Читать книгу</a></button>
+    <button><a target="_blank" href="{{ book_id.trailer }}">Читать книгу</a></button>
     <hr>
     <h2>Отзывы</h2>
  
-    <h3>Общая оценка - "вставить значение переменной тут"</h3>
+    <h3>Общая оценка - {{ overall_rating }}/10</h3>
      
     <ol>
         <!-- Вставить цикл тут -->
+         {% for i in book_id.reviews.all %}
         <li>
-            <h2>Имя - "вставить значение переменной тут"</h2>
-            <p>Оценка - "вставить значение переменной тут"</p>
-            <p>Комментарий - "вставить значение переменной тут"</p>
+            <h2>Имя - {{ i.name_user }}</h2>
+            <p>Оценка - {{ i.mark }}</p>
+            <p>Комментарий - {{ i.comments }}</p>
         </li>
-        
+        {% endfor %}
         <!-- Закрыть цикл тут -->
     </ol>
-
+    {% include 'footer.html' %} 
 </body>
 </html>

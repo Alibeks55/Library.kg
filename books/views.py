@@ -7,8 +7,10 @@ from . import book
 def booksDetailView(request, id):
     if request.method == 'GET':
         book_id = get_object_or_404(book.Book, id=id)
+        overall_rating = book_id.overall_rating()
         context = {
-            'book_id': book_id
+            'book_id': book_id,
+            'overall_rating': overall_rating
         } 
     return render(request, template_name='books/book_detail.html', context=context)
 
