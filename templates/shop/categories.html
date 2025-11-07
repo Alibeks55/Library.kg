@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Категории</title>
+</head>
+<body>
+    <h1>Все категории</h1>
+    <ul>
+        {% for i in categories %}
+        <li>
+            <a href='/category_list/{{ i.id }}/'>{{ i.name_category }}</a>
+        </li>
+        <hr>
+        {% endfor %}
+    </ul>
+</body>
+</html>

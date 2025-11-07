@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Продукты категории {{ category.name_category }}</title>
+</head>
+<body>
+    <h1>Продукты категории {{ category.name_category }}</h1>
+    <ul>
+        {% for i in products %}
+        <li>
+            <h2>{{ i.name_product }}</h2>
+            <p>Цена: {{ i.price_product }} сом</p>
+        </li>
+        <hr>
+        {% endfor %}
+    </ul>
+</body>
+</html>
