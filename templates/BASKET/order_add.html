@@ -10,7 +10,6 @@
 <body>
     {% include 'header.html' %}
     <h1>Оформление заказа</h1>
-    <p>Книга: {{ book.title }}</p>
 
     <form method="POST">
         {% csrf_token %}
