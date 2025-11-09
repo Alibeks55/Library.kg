@@ -1,0 +1,25 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Удаление заказа</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    {% include 'header.html' %}
+    <h1>Удалить заказ?</h1>
+    <p>Вы уверены, что хотите удалить заказ "{{ order.user_full_name }}"?</p>
+
+    <form method="POST">
+    {% csrf_token %}
+    <div class="confirm-buttons">
+        <button type="submit">Да,уверен</button>
+        <a href="{% url 'order_list' %}">Нет,вернутся</a>
+    </div>
+</form>
+{% include 'footer.html' %}
+</body>
+</html>
+

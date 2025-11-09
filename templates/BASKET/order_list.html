@@ -1,0 +1,33 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ваша корзина</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    {% include 'header.html' %}
+    <h1>Ваша корзина</h1>
+
+    <ul>
+    {% for order in order %}
+        <li>
+            <p><strong>ФИО:</strong> {{ order.user_full_name }}</p>
+            <p><strong>Телефон:</strong> {{ order.user_phone }}</p>
+            <p><strong>Город:</strong> {{ order.user_city }}</p>
+            <p><strong>Книги:</strong>
+                {% for book in order.name_book.all %}
+                    {{ book.title }}{% if not forloop.last %}, {% endif %}
+                {% endfor %}
+            </p>
+            <a href="{% url 'update_order' order.id %}">Изменить</a>
+            <a href="{% url 'delete_order' order.id %}">Удалить</a>
+        </li>
+        <hr>
+    {% endfor %}
+    </ul>
+    {% include 'footer.html' %}
+</body>
+</html>

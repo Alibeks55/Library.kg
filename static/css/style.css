@@ -25,7 +25,7 @@ li {
     border-radius: 12px;
     overflow: hidden;
     box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-    text-align: center; /* весь контент по центру */
+    text-align: center; 
     transition: transform 0.3s ease;
     padding: 15px 20px;
     display: flex;
@@ -52,18 +52,18 @@ li h2 {
     margin: 0 0 10px 0;
     font-size: 20px;
     color: rgb(107,66,38);
-    text-align: center; /* название по центру */
+    text-align: center;
 }
 
 li p {
     margin: 5px 0 15px 0;
     color: rgb(75,59,42);
-    text-align: center; /* описание слева */
+    text-align: center; 
 }
 
 button {
     display: block;
-    margin: 10px auto 0 auto; /* по центру */
+    margin: 10px auto 0 auto; 
     padding: 10px 20px;
     background-color: rgb(160,82,45);
     border: none;
@@ -88,7 +88,7 @@ a {
     text-decoration: none;
     padding: 8px 16px;
     border-radius: 8px;
-    margin: 0 auto 15px auto; /* по центру */
+    margin: 0 auto 15px auto; 
     transition: background-color 0.3s;
     text-align: center;
 }
@@ -112,4 +112,10 @@ footer {
 
 footer p {
     margin: 5px 0;
+}
+
+.confirm-buttons {
+    display: flex;
+    justify-content: flex-start;
+    gap: 20px;
 }
