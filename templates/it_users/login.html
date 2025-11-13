@@ -1,0 +1,16 @@
+{% load static %}
+{% include 'header.html' %}
+
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+<h1>Авторизация в IT компанию</h1>
+<form  method="POST" >
+    {% csrf_token %}
+    {{ form.as_p  }}
+    {% if form.errors %}
+        <div style="color: red;">{{ form.errors }}</div>
+    {% endif %}
+    <button type="submit">Авторизация</button>
+</form>
+
+
+{% include 'footer.html' %}

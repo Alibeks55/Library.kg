@@ -1,0 +1,15 @@
+{% load static %}
+{% include 'header.html' %}
+
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+<h1>Регистрация на прием работы в IT компанию</h1>
+<form  method="POST">
+    {% csrf_token %}
+    {{ form.as_p  }}
+    {% if form.errors %}
+        <div style="color: red;">{{ form.errors }}</div>
+    {% endif %}  
+    <button type="submit">Регистрация</button>
+</form>
+
+{% include 'footer.html' %}
