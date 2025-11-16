@@ -7,4 +7,5 @@ urlpatterns = [
     path('quotes_of_great_writers/', views.quotes_of_great_writers_view, name='quotes_of_great_writers'),
     path('', views.booksView, name='book_list'),
     path('book_list/<int:id>/', views.booksDetailView, name='book_detail'),
+    path('search/', views.searchView, name='search'),
 ]

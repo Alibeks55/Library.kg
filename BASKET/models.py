@@ -27,6 +27,10 @@ class Placing_an_order(models.Model):
 
     def __str__(self):
       return self.user_full_name
+    
+    class Meta:
+       verbose_name = 'в Корзину'
+       verbose_name_plural = 'Корзины'
 
 
 

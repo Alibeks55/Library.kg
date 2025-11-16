@@ -1,0 +1,24 @@
+{% load static %}
+{% include 'header.html' %}
+
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+
+<h1>Премиум</h1>
+    <ul>
+        {% for i in premium_products %}
+        <li>
+            <h2>{{ i.title }}</h2>
+            <p>
+                {% for tag in i.tags.all %}
+                {{ tag.name }} {% if not forloop.last %}, {% endif %}
+                {% empty %}
+                Тегов нет:
+                {% endfor %}
+            </p>
+            
+        </li>
+        {% endfor %}
+    </ul>
+
+{% include 'footer.html' %}

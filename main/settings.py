@@ -31,6 +31,7 @@ INSTALLED_APPS = [
     'BASKET',
     'it_users',
     'captcha',
+    'LS_Waikiki',
 ]
 
 MIDDLEWARE = [

@@ -4,6 +4,16 @@ import random
 from datetime import datetime
 from . import book
 
+def searchView(request):
+    query = request.GET.get('s','')
+    books = book.Book.objects.filter(title__icontains=query) if query else book.Book.none
+    context = {
+        'book': books,
+        's': query
+    }
+    return render(request, template_name='books/book.html', context=context)
+
+
 def booksDetailView(request, id):
     if request.method == 'GET':
         book_id = get_object_or_404(book.Book, id=id)
