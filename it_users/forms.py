@@ -1,6 +1,6 @@
 from django import forms
 from . import models
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from captcha.fields import CaptchaField
 
 YEARS = (
@@ -36,7 +36,7 @@ class CustomRegisterForm(UserCreationForm):
     portfolio_link = forms.URLField(required=True, label='ссылка (на github):')
     experience_years = forms.ChoiceField(choices=YEARS, required=True,label='Опыт работы:')
     it_direction = forms.ChoiceField(choices=IT_DIRECTIONS, required=True, label='Напрвления:')
-    captcha = CaptchaField(label='Ведите символ с картинки:' )
+
 
     class Meta:
         model = models.CustomUser
@@ -67,3 +67,6 @@ class CustomRegisterForm(UserCreationForm):
         if commit:
             user.save()
         return user
+    
+class CustomAuthenticationForm(AuthenticationForm):
+    captcha = CaptchaField(label='Ведите символ с картинки:' )
