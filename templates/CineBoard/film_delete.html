@@ -1,0 +1,14 @@
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+{% include 'CineBoard/filmheader.html' %}
+
+<h1>Вы уверенны что хотите удалить эту задачу:?</h1>
+
+<form method="post">
+    {% csrf_token %}
+    <button type="submit">удалить</button>
+    <a href="{% url 'cine_film_list' %}">Отмена</a>
+</form>
+

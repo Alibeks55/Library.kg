@@ -1,0 +1,47 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Все фильмы</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    {% include 'CineBoard/filmheader.html' %}
+
+    <form action="{% url 'cine_search' %}" method="GET">
+        <input type="text" name="s" placeholder="Поиск по названию" value="{{ s }}">
+        <select name="genre">
+            <option value="">Все жанры</option>
+            <option value="фантастика" {% if selected_genre == 'фантастика' %}selected{% endif %}>Фантастика</option>
+            <option value="Ужасы" {% if selected_genre == 'Ужасы' %}selected{% endif %}>Ужасы</option>
+            <option value="Мелодрамма" {% if selected_genre == 'Мелодрамма' %}selected{% endif %}>Мелодрамма</option>
+            <option value="Боевик" {% if selected_genre == 'Боевик' %}selected{% endif %}>Боевик</option>
+        </select>
+        <button type="submit">Поиск / Фильтр</button>
+    </form>
+
+    <h1>Все фильмы</h1>
+
+    <ul>
+        {% for i in films %}
+        <li>
+            {% if i.image %}
+                <img src="{{ i.image.url }}" alt="{{ i.name }}" width="450" height="400">
+            {% endif %}
+            <h2>{{ i.name }}</h2>
+            <time datetime="">{{ i.release_date }}</time>
+
+            <a href="{% url 'film_detail' i.id %}">Подробнее</a>
+        {% if user.is_authenticated %}
+            <a href="{% url 'film_update' i.id %}">Изменить</a>
+            <a href="{% url 'film_delete' i.id %}">Удалить</a>
+        {% endif %}
+        </li>
+        <hr>
+        {% endfor %}
+    </ul>
+</body>
+</html>

@@ -26,12 +26,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'books',
-    'shop',
-    'BASKET',
-    'it_users',
-    'captcha',
-    'LS_Waikiki',
+    # 'books',
+    # 'shop',
+    # 'BASKET',
+    # 'it_users',
+    # 'captcha',
+    # 'LS_Waikiki',
+    'CineBoard',
 ]
 
 MIDDLEWARE = [
